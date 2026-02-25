@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Save the date - Carlotta & Simone</title>
+	<link rel="icon" type="image/x-icon" href="wedding.ico">
+    <style>
+        :root {
+            --red: #c0392b;
+            --cream: #f9f7f2;
+            --gold: #d4af37;
+            --transition-speed: 1.8s;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background-color: #e0e0e0;
+            font-family: 'Georgia', serif;
+        }
+
+        #main-site {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1; 
+            background: white;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) cubic-bezier(0.2, 0.8, 0.2, 1);
+            text-align: center;
+        }
+
+        #main-site.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- CONTENITORE BUSTA DIVISA --- */
+        #envelope-wrapper {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+        }
+
+        .side {
+            width: 45vw;
+            max-width: 190px;
+            height: 95vh;
+            background: var(--cream);
+            position: relative;
+            transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--transition-speed);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .left-side {
+            border-radius: 5px 0 0 5px;
+            transform-origin: left center;
+            z-index: 12;
+        }
+
+        .right-side {
+            border-radius: 0 5px 5px 0;
+            transform-origin: right center;
+            z-index: 12;
+            border-left: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .corner-pattern {
+            position: absolute;
+            top: 0; left: 0;
+            width: 180px; height: 180px;
+            background: var(--red);
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            
+            background-size: 10px 10px;
+        }
+
+        .kanji {
+            font-size: 2.5rem;
+            writing-mode: vertical-rl;
+            margin-top: 60px;
+            letter-spacing: 12px;
+            color: #222;
+        }
+
+        #knot-container {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            pointer-events: none;
+            transition: all 1s ease;
+        }
+
+		.mizuhiki-line {
+			position: absolute;
+			top: 50%; left: 50%;
+			transform: translate(-50%, -50%);
+			width: 385px;
+			height: 3px;
+			background: linear-gradient(
+			90deg,
+			var(--gold) 0%,
+			var(--gold) 20%,
+			var(--gold) 35%,
+			var(--gold) 50%,
+			var(--gold) 65%,
+			var(--gold) 80%,
+			var(--gold) 100%
+			);
+			border-radius: 2px;
+			box-shadow:
+			0 1px 2px rgba(0,0,0,0.4),
+			0 -1px 1px rgba(255,255,255,0.3);
+			filter: drop-shadow(0 0 2px rgba(192, 57, 43, 0.5));
+		}
+
+		.mizuhiki-line::before,
+		.mizuhiki-line::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			left: 0;
+			height: 1px;
+			background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(255,255,255,0.6) 30%,
+			rgba(255,255,255,0.2) 60%,
+			transparent
+			);
+			transform: translateY(-1px);
+		}
+
+		.mizuhiki-line::after {
+			transform: translateY(1px);
+			background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(0,0,0,0.2) 30%,
+			rgba(0,0,0,0.1) 60%,
+			transparent
+			);
+		}
+
+        .opened .left-side {
+            transform: rotateY(-110deg) translateX(-50%);
+            opacity: 0;
+        }
+
+        .opened .right-side {
+            transform: rotateY(110deg) translateX(50%);
+            opacity: 0;
+        }
+
+        .opened #knot-container {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.5);
+            filter: blur(8px);
+        }
+
+		.rsvp {
+			border: 2px solid transparent;
+			border-image: linear-gradient(45deg, var(--red), var(--gold)) 1;
+			border-radius: 10px;
+			max-width: 90vw;
+			max-height: 90vh;
+			width: 100%;
+			height: auto;
+			object-fit: contain;
+		}
+
+    </style>
+</head>
+<body>
+
+    <div id="envelope-wrapper" onclick="openMagic()">
+        <div class="side left-side">
+            <div class="corner-pattern"></div>
+            <div class="kanji" style="margin-top: 150px; margin-right: -45px;">招待</div>
+        </div>
+
+        <div class="side right-side">
+            </div>
+
+        <div id="knot-container">
+			<div class="mizuhiki-line"></div>
+			<img src="seal.webp" alt="Mizuhiki Knot" style="width: 80px; height: 80px; position: relative; z-index: 102;">
+			<!-- 
+            <svg width="80" height="80" viewBox="0 0 100 100">
+                <path d="M50,50 C20,10 5,90 50,50 C95,90 80,10 50,50" 
+                      fill="none" stroke="#c0392b" stroke-width="2" />
+                <circle cx="50" cy="50" r="4" fill="#c0392b" />
+            </svg> -->
+        </div>
+    </div>
+
+    <main id="main-site">
+		<img class="rsvp" src="rsvp.png" alt="RSVP">
+    </main>
+
+    <script>
+        function openMagic() {
+            const wrapper = document.getElementById('envelope-wrapper');
+            const site = document.getElementById('main-site');
+
+            wrapper.classList.add('opened');
+            
+            setTimeout(() => {
+                site.classList.add('visible');
+            }, 300);
+
+            setTimeout(() => {
+                wrapper.style.pointerEvents = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
