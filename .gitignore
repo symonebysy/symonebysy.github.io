@@ -1,0 +1,14 @@
+_old
+node_modules
+dist
+*.Identifier
+package-lock.json
+images/sc1.jpg
+images/sc2.jpg
+images/sc3.jpg
+images/sc4.jpg
+images/sc5.jpg
+images/sc6.jpg
+images/sc7.jpg
+images/sc8.jpg
+images/sc9.jpg
