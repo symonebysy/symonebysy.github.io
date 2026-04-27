@@ -148,8 +148,8 @@
 			display: none;
 		}
 	</style>
-  <script type="module" crossorigin src="/assets/evento-BDK3Wtcu.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/evento-Cns3mVBL.css">
+  <script type="module" crossorigin src="/assets/evento-CrrVU653.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/evento-Dxf34xis.css">
 </head>
 
 <body class="bg-[#f9f8f4] font-jp text-stone-800">
@@ -273,9 +273,9 @@
 		</section>
 
 		<!-- "Ikigai" - slideshow -->
-		<section id="story" class="h-screen w-full flex flex-col items-center justify-center snap-start px-4">
+		<section id="story" class="min-h-screen w-full flex flex-col items-center justify-center snap-start px-4 py-6">
 			<div
-				class="max-w-xl w-full bg-white/95 backdrop-blur-md p-6 md:p-10 shadow-xl border-l-4 border-[#bc002d] relative flex flex-col justify-between h-[70vh] mt-10">
+				class="max-w-xl w-full bg-white/95 backdrop-blur-md p-6 md:p-10 shadow-xl border-l-4 border-[#bc002d] relative flex flex-col justify-between">
 				<!-- 
 				<h3 class="text-[#bc002d] text-xl font-mincho uppercase tracking-[0.4em] mb-2 font-semibold">生き甲斐 - Ikigai</h3>
 				<div class="h-px w-12 bg-stone-200 mb-8 w-full"></div>
@@ -290,8 +290,7 @@
 					<div id="default-carousel" class="relative md:w-full flex-grow overflow-hidden"
 						data-carousel="slide">
 						<div
-							class="relative aspect-[4/5] w-full max-h-[50vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
-
+						class="relative aspect-[4/5] w-full max-h-[35vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
 							<div class="hidden duration-700 ease-in-out" data-carousel-item>
 								<img src="/assets/sc1-D2RjL9Db.jpg"
 									class="absolute block w-full h-full object-cover object-center" alt="Story 1">
@@ -359,7 +358,7 @@
 					</div>
 
 					<div class="w-full mt-4">
-						<p class="text-lg leading-loose font-light italic text-stone-800">
+						<p class="text-base md:text-lg leading-loose font-light italic text-stone-800">
 							Come i petali di ciliegio che danzano nel vento, <br>
 							oggi celebriamo la bellezza dell'impermanenza <br>
 							diventando una cosa sola.
@@ -511,7 +510,7 @@
 						<div class="mt-4 text-[12px] tracking-widest text-stone-800 leading-loose">
 							Per chi viene da fuori, sono disponibili alcune camere presso la villa: 3 quadruple e 8
 							doppie.<br />
-							Vi chiediamo di comunicarci la vostra necessità di alloggio il prima possibile, in modo da
+							<strong>Vi chiediamo di comunicarci la vostra necessità di alloggio il prima possibile</strong>, in modo da
 							poter organizzare al meglio la distribuzione delle camere.
 							<br />
 							Sono inoltre presenti alcuni B&B nei dintorni, tra cui:<br />
@@ -702,7 +701,8 @@
 							class="mt-4 text-md tracking-widest text-stone-800 leading-loose uppercase text-center group/tooltip relative cursor-help inline-block w-full">
 							ありがとうございます！
 							<div
-								class="absolute  top-full mt-2 px-3 py-1 bg-stone-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 focus-within:opacity-100 transition-opacity pointer-events-none">
+								class="absolute  top-full mt-2 px-3 py-1 bg-stone-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 focus-within:opacity-100 transition-opacity pointer-events-none"
+								id="arigatou-tooltip">
 								Arigatou gozaimasu - Grazie!
 							</div>
 						</div>
@@ -863,7 +863,7 @@
 					'METHOD:PUBLISH',
 					'BEGIN:VEVENT',
 					'UID:wedding-simone-carlotta-20261017@symonebysy.github.io',
-					'DTSTAMP:' + new Date().toISOString().replace(/[-:.]/g, '').slice(0, 15) + 'Z',
+					'DTSTAMP:' + new Date().toISOString().replace(/[-:.]/g, '').slice(0, 6) + 'Z',
 					'DTSTART:20261017T133000Z',
 					'DTEND:20261018T000000Z',
 					'SUMMARY:💍 Matrimonio Simone & Carlotta',
@@ -919,9 +919,14 @@
 				const originalIcon = button.innerHTML;
 				button.classList.add('bg-green-500');
 				button.innerHTML = '<i class="fas fa-check"></i>';
+
+				const tooltip = document.getElementById('arigatou-tooltip');
+				tooltip.classList.add('!opacity-100');
+
 				setTimeout(() => {
 					button.innerHTML = originalIcon;
 					button.classList.remove('bg-green-500');
+					tooltip.classList.remove('!opacity-100');
 				}, 2000);
 			}
 		
