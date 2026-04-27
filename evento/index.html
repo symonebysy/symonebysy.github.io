@@ -148,8 +148,8 @@
 			display: none;
 		}
 	</style>
-  <script type="module" crossorigin src="/assets/evento-CrrVU653.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/evento-Dxf34xis.css">
+  <script type="module" crossorigin src="/assets/evento-Dpdl9-1s.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/evento-BRkpkMqM.css">
 </head>
 
 <body class="bg-[#f9f8f4] font-jp text-stone-800">
@@ -610,17 +610,21 @@
 					</div>
 
 					<!-- Confirmation panel (hidden until success) -->
-					<div id="rsvp-confirmation" class="hidden flex-1 flex flex-col items-center justify-center text-center gap-6">
-						<div class="hanko text-[10px] mb-2">愛</div>
-						<h3 class="text-[#bc002d] text-sm font-mincho uppercase tracking-[0.4em] font-semibold">Grazie!</h3>
-						<p class="text-[10px] tracking-widest text-stone-500 leading-loose">Il vostro RSVP è stato ricevuto.</p>
-						<div id="confirmation-list" class="w-full text-left space-y-3"></div>
-						<button onclick="downloadCalendar()" class="group relative mt-2 px-8 py-4 border border-stone-800 self-center overflow-hidden transition-all">
-							<span class="relative z-10 text-[9px] tracking-[0.3em] uppercase group-hover:text-white transition-colors">
-								<i class="far fa-calendar-plus mr-2"></i>Scarica promemoria evento
-							</span>
-							<div class="absolute inset-0 bg-stone-800 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-						</button>
+					<div id="rsvp-confirmation" class="hidden flex-1 flex flex-col min-h-0 text-center">
+						<div class="flex flex-col items-center gap-2 pb-4 shrink-0">
+							<div class="hanko text-[10px]">愛</div>
+							<h3 class="text-[#bc002d] text-sm font-mincho uppercase tracking-[0.4em] font-semibold">Grazie!</h3>
+							<p class="text-[10px] tracking-widest text-stone-500 leading-loose">Il vostro RSVP è stato ricevuto.</p>
+						</div>
+						<div id="confirmation-list" class="w-full text-left space-y-3 overflow-y-auto flex-1 min-h-0 pr-1"></div>
+						<div class="pt-4 shrink-0">
+							<button onclick="downloadCalendar()" class="group relative px-8 py-4 border border-stone-800 self-center overflow-hidden transition-all w-full">
+								<span class="relative z-10 text-[9px] tracking-[0.3em] uppercase group-hover:text-white transition-colors">
+									<i class="far fa-calendar-plus mr-2"></i>Scarica promemoria evento
+								</span>
+								<div class="absolute inset-0 bg-stone-800 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+							</button>
+						</div>
 					</div>
 
 					<form id="rsvp-form" class="space-y-6">
@@ -934,6 +938,29 @@
 				const card = document.getElementById('rsvp-card');
 				card.classList.toggle('is-flipped');
 			}
+
+			// Debug: press Esc 3 times to bypass form and show success
+			let escCount = 0, escTimer = null;
+			document.addEventListener('keydown', function (e) {
+				if (e.key !== 'Escape') return;
+				escCount++;
+				clearTimeout(escTimer);
+				escTimer = setTimeout(() => { escCount = 0; }, 1000);
+				if (escCount >= 3) {
+					escCount = 0;
+					const card = document.getElementById('rsvp-card');
+					if (!card.classList.contains('is-flipped')) card.classList.add('is-flipped');
+					const mockParticipants = [
+						{ nome: 'Debug User', partecipazione: 'Sì, con piacere', note: 'test' },
+						{ nome: 'Debug User', partecipazione: 'Sì, con piacere', note: 'test' },
+						{ nome: 'Debug User', partecipazione: 'Sì, con piacere', note: 'test' },
+						{ nome: 'Debug User', partecipazione: 'Sì, con piacere', note: 'test' },
+						{ nome: 'Debug User', partecipazione: 'Sì, con piacere', note: 'test' }
+					];
+					showConfirmation(mockParticipants);
+					console.log('[DEBUG] form bypassed via Esc x3');
+				}
+			});
 
 			// Mostra/nascondi campo note in base alla partecipazione
 			const select = document.querySelector('#rsvp-card select');
