@@ -148,6 +148,19 @@
 		#tabs-container::-webkit-scrollbar {
 			display: none;
 		}
+
+		/* Cross-fade carousel */
+		#default-carousel .carousel-item {
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+			transition: opacity 0.8s ease-in-out;
+			pointer-events: none;
+		}
+		#default-carousel .carousel-item.active {
+			opacity: 1;
+			pointer-events: auto;
+		}
 	</style>
   <script type="module" crossorigin src="/assets/evento-Dpdl9-1s.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/evento-BRkpkMqM.css">
@@ -288,66 +301,62 @@
 				</div>
 
 				<div class="md:grid md:grid-cols-2 md:gap-4">
-					<div id="default-carousel" class="relative md:w-full flex-grow overflow-hidden"
-						data-carousel="slide">
-						<div
-						class="relative aspect-[4/5] w-full max-h-[35vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc1-D2RjL9Db.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 1">
-							</div>
-
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc2-DoVEO0cA.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 2">
-							</div>
-
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc3-aQ7lJ_8O.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 3">
-							</div>
-
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc4-CRGmTVps.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 4">
-							</div>
-
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc5-BA5Xju08.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 5">
-							</div>
-
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc6-Cu_FomgJ.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 6">
-							</div>
-
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc7-eaY5Y9u6.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 7">
-							</div>
-
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
-								<img src="/assets/sc8-CDUTmTA-.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 7">
-							</div>
+<div id="default-carousel" class="relative md:w-full flex-grow overflow-hidden">
+					<div class="relative aspect-[4/5] w-full max-h-[35vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
+						<div class="carousel-item active">
+							<img src="/assets/sc1-D2RjL9Db.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 1">
 						</div>
 
-						<button type="button"
-							class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group"
-							data-carousel-prev>
-							<span
-								class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
-								<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="m15 19-7-7 7-7" />
-								</svg>
-							</span>
-						</button>
+						<div class="carousel-item">
+							<img src="/assets/sc2-DoVEO0cA.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 2">
+						</div>
 
-						<button type="button"
-							class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group"
-							data-carousel-next>
+						<div class="carousel-item">
+							<img src="/assets/sc3-aQ7lJ_8O.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 3">
+						</div>
+
+						<div class="carousel-item">
+							<img src="/assets/sc4-CRGmTVps.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 4">
+						</div>
+
+						<div class="carousel-item">
+							<img src="/assets/sc5-BA5Xju08.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 5">
+						</div>
+
+						<div class="carousel-item">
+							<img src="/assets/sc6-Cu_FomgJ.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 6">
+						</div>
+
+						<div class="carousel-item">
+							<img src="/assets/sc7-eaY5Y9u6.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 7">
+						</div>
+
+						<div class="carousel-item">
+							<img src="/assets/sc8-CDUTmTA-.jpg"
+								class="absolute block w-full h-full object-cover object-center" alt="Story 8">
+						</div>
+					</div>
+
+					<button type="button" id="carousel-prev"
+						class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
+						<span
+							class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
+							<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="m15 19-7-7 7-7" />
+							</svg>
+						</span>
+					</button>
+
+					<button type="button" id="carousel-next"
+						class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
 							<span
 								class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
 								<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -719,6 +728,32 @@
 		</section>
 
 		<script>
+			// Cross-fade carousel
+			(function () {
+				const items = Array.from(document.querySelectorAll('#default-carousel .carousel-item'));
+				let current = 0;
+				let timer;
+
+				function goTo(n) {
+					items[current].classList.remove('active');
+					current = ((n % items.length) + items.length) % items.length;
+					items[current].classList.add('active');
+				}
+
+				function next() { goTo(current + 1); }
+				function prev() { goTo(current - 1); }
+
+				function resetTimer() {
+					clearInterval(timer);
+					timer = setInterval(next, 4000);
+				}
+
+				document.getElementById('carousel-next').addEventListener('click', function () { next(); resetTimer(); });
+				document.getElementById('carousel-prev').addEventListener('click', function () { prev(); resetTimer(); });
+
+				resetTimer();
+			})();
+
 			console.log("Script RSVP caricato (2026.05.09)");
 
 			let participants = [{ nome: '', partecipazione: 'Sì, con piacere', note: '' }];
