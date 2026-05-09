@@ -288,12 +288,8 @@
 
 		<!-- "Ikigai" - slideshow -->
 		<section id="story" class="min-h-screen w-full flex flex-col items-center justify-center snap-start px-4 py-6">
-			<div
-				class="max-w-xl w-full bg-white/95 backdrop-blur-md p-6 md:p-10 shadow-xl border-l-4 border-[#bc002d] relative flex flex-col justify-between">
-				<!-- 
-				<h3 class="text-[#bc002d] text-xl font-mincho uppercase tracking-[0.4em] mb-2 font-semibold">生き甲斐 - Ikigai</h3>
-				<div class="h-px w-12 bg-stone-200 mb-8 w-full"></div>
- -->
+			<div class="max-w-xl w-full bg-white/95 backdrop-blur-md p-6 md:p-10 shadow-xl border-l-4 border-[#bc002d] relative flex flex-col justify-between">
+
 				<div class="w-full">
 					<h3 class="text-[#bc002d] text-sm font-mincho uppercase tracking-[0.4em] mb-2 font-semibold">生き甲斐 -
 						Ikigai</h3>
@@ -301,69 +297,70 @@
 				</div>
 
 				<div class="md:grid md:grid-cols-2 md:gap-4">
-<div id="default-carousel" class="relative md:w-full flex-grow overflow-hidden">
-					<div class="relative aspect-[4/5] w-full max-h-[35vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
-						<div class="carousel-item active">
-							<img src="/assets/sc1-D2RjL9Db.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 1">
+
+					<div id="default-carousel" class="relative md:w-full flex-grow overflow-hidden">
+						<div class="relative aspect-[4/5] w-full max-h-[35vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
+							<div class="carousel-item active">
+								<img src="/assets/sc1-D2RjL9Db.jpg"
+									class="absolute block w-full h-full object-cover" style="object-position: center 80%;" alt="Story 1">
+							</div>
+
+							<div class="carousel-item">
+								<img src="/assets/sc2-DoVEO0cA.jpg"
+									class="absolute block w-full h-full object-cover object-center" alt="Story 2">
+							</div>
+
+							<div class="carousel-item">
+								<img src="/assets/sc3-aQ7lJ_8O.jpg"
+									class="absolute block w-full h-full object-cover object-center" alt="Story 3">
+							</div>
+
+							<div class="carousel-item">
+								<img src="/assets/sc4-CRGmTVps.jpg"
+									class="absolute block w-full h-full object-cover object-center" alt="Story 4">
+							</div>
+
+							<div class="carousel-item">
+								<img src="/assets/sc5-BA5Xju08.jpg"
+									class="absolute block w-full h-full object-cover object-center" alt="Story 5">
+							</div>
+
+							<div class="carousel-item">
+								<img src="/assets/sc6-Cu_FomgJ.jpg"
+									class="absolute block w-full h-full object-cover object-center" style="object-position: center 80%;" alt="Story 6">
+							</div>
+
+							<div class="carousel-item">
+								<img src="/assets/sc7-eaY5Y9u6.jpg"
+									class="absolute block w-full h-full object-cover object-center" alt="Story 7">
+							</div>
+
+							<div class="carousel-item">
+								<img src="/assets/sc8-CDUTmTA-.jpg"
+									class="absolute block w-full h-full object-cover object-center" alt="Story 8">
+							</div>
 						</div>
 
-						<div class="carousel-item">
-							<img src="/assets/sc2-DoVEO0cA.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 2">
-						</div>
-
-						<div class="carousel-item">
-							<img src="/assets/sc3-aQ7lJ_8O.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 3">
-						</div>
-
-						<div class="carousel-item">
-							<img src="/assets/sc4-CRGmTVps.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 4">
-						</div>
-
-						<div class="carousel-item">
-							<img src="/assets/sc5-BA5Xju08.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 5">
-						</div>
-
-						<div class="carousel-item">
-							<img src="/assets/sc6-Cu_FomgJ.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 6">
-						</div>
-
-						<div class="carousel-item">
-							<img src="/assets/sc7-eaY5Y9u6.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 7">
-						</div>
-
-						<div class="carousel-item">
-							<img src="/assets/sc8-CDUTmTA-.jpg"
-								class="absolute block w-full h-full object-cover object-center" alt="Story 8">
-						</div>
-					</div>
-
-					<button type="button" id="carousel-prev"
-						class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
-						<span
-							class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
-							<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-									d="m15 19-7-7 7-7" />
-							</svg>
-						</span>
-					</button>
-
-					<button type="button" id="carousel-next"
-						class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
+						<button type="button" id="carousel-prev"
+							class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
 							<span
 								class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
 								<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="m9 5 7 7-7 7" />
+										d="m15 19-7-7 7-7" />
 								</svg>
 							</span>
+						</button>
+
+						<button type="button" id="carousel-next"
+							class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
+								<span
+									class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
+									<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+											d="m9 5 7 7-7 7" />
+									</svg>
+								</span>
 						</button>
 					</div>
 
