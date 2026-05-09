@@ -149,6 +149,19 @@
 		#tabs-container::-webkit-scrollbar {
 			display: none;
 		}
+
+		/* Cross-fade carousel */
+		#default-carousel .carousel-item {
+			position: absolute;
+			inset: 0;
+			opacity: 0;
+			transition: opacity 0.8s ease-in-out;
+			pointer-events: none;
+		}
+		#default-carousel .carousel-item.active {
+			opacity: 1;
+			pointer-events: auto;
+		}
 	</style>
 </head>
 
@@ -274,12 +287,8 @@
 
 		<!-- "Ikigai" - slideshow -->
 		<section id="story" class="min-h-screen w-full flex flex-col items-center justify-center snap-start px-4 py-6">
-			<div
-				class="max-w-xl w-full bg-white/95 backdrop-blur-md p-6 md:p-10 shadow-xl border-l-4 border-[#bc002d] relative flex flex-col justify-between">
-				<!-- 
-				<h3 class="text-[#bc002d] text-xl font-mincho uppercase tracking-[0.4em] mb-2 font-semibold">生き甲斐 - Ikigai</h3>
-				<div class="h-px w-12 bg-stone-200 mb-8 w-full"></div>
- -->
+			<div class="max-w-xl w-full bg-white/95 backdrop-blur-md p-6 md:p-10 shadow-xl border-l-4 border-[#bc002d] relative flex flex-col justify-between">
+
 				<div class="w-full">
 					<h3 class="text-[#bc002d] text-sm font-mincho uppercase tracking-[0.4em] mb-2 font-semibold">生き甲斐 -
 						Ikigai</h3>
@@ -287,54 +296,52 @@
 				</div>
 
 				<div class="md:grid md:grid-cols-2 md:gap-4">
-					<div id="default-carousel" class="relative md:w-full flex-grow overflow-hidden"
-						data-carousel="slide">
-						<div
-						class="relative aspect-[4/5] w-full max-h-[35vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+
+					<div id="default-carousel" class="relative md:w-full flex-grow overflow-hidden">
+						<div class="relative aspect-[4/5] w-full max-h-[35vh] md:max-h-[200vh] mx-auto overflow-hidden rounded-sm">
+							<div class="carousel-item active">
 								<img src="../images/sc1.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 1">
+									class="absolute block w-full h-full object-cover" style="object-position: center 80%;" alt="Story 1">
 							</div>
 
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+							<div class="carousel-item">
 								<img src="../images/sc2.jpg"
 									class="absolute block w-full h-full object-cover object-center" alt="Story 2">
 							</div>
 
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+							<div class="carousel-item">
 								<img src="../images/sc3.jpg"
 									class="absolute block w-full h-full object-cover object-center" alt="Story 3">
 							</div>
 
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+							<div class="carousel-item">
 								<img src="../images/sc4.jpg"
 									class="absolute block w-full h-full object-cover object-center" alt="Story 4">
 							</div>
 
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+							<div class="carousel-item">
 								<img src="../images/sc5.jpg"
 									class="absolute block w-full h-full object-cover object-center" alt="Story 5">
 							</div>
 
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+							<div class="carousel-item">
 								<img src="../images/sc6.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 6">
+									class="absolute block w-full h-full object-cover object-center" style="object-position: center 80%;" alt="Story 6">
 							</div>
 
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+							<div class="carousel-item">
 								<img src="../images/sc7.jpg"
 									class="absolute block w-full h-full object-cover object-center" alt="Story 7">
 							</div>
 
-							<div class="hidden duration-700 ease-in-out" data-carousel-item>
+							<div class="carousel-item">
 								<img src="../images/sc8.jpg"
-									class="absolute block w-full h-full object-cover object-center" alt="Story 7">
+									class="absolute block w-full h-full object-cover object-center" alt="Story 8">
 							</div>
 						</div>
 
-						<button type="button"
-							class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group"
-							data-carousel-prev>
+						<button type="button" id="carousel-prev"
+							class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
 							<span
 								class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
 								<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -344,16 +351,15 @@
 							</span>
 						</button>
 
-						<button type="button"
-							class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group"
-							data-carousel-next>
-							<span
-								class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
-								<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="m9 5 7 7-7 7" />
-								</svg>
-							</span>
+						<button type="button" id="carousel-next"
+							class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 cursor-pointer group">
+								<span
+									class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/40">
+									<svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+											d="m9 5 7 7-7 7" />
+									</svg>
+								</span>
 						</button>
 					</div>
 
@@ -413,7 +419,7 @@
 
 						<div class="relative flex items-center justify-between w-full">
 							<div class="w-5/12 text-right pr-8">
-								<span class="text-[#bc002d] font-bold tracking-tighter">19:30</span>
+								<span class="text-[#bc002d] font-bold tracking-tighter">20:00</span>
 							</div>
 							<div
 								class="absolute left-1/2 transform -translate-x-1/2 w-2 h-2 bg-stone-400 rounded-full ring-4 ring-[#f9f8f4]">
@@ -428,7 +434,7 @@
 
 						<div class="relative flex items-center justify-between w-full">
 							<div class="w-5/12 text-right pr-8">
-								<span class="text-[#bc002d] font-bold tracking-tighter">22:30</span>
+								<span class="text-[#bc002d] font-bold tracking-tighter">23:00</span>
 							</div>
 							<div
 								class="absolute left-1/2 transform -translate-x-1/2 w-2 h-2 bg-stone-400 rounded-full ring-4 ring-[#f9f8f4]">
@@ -557,7 +563,7 @@
 						<div name="info-wedding" class="group/item border-b border-stone-100 pb-3">
 							<div class="mt-4 text-[12px] tracking-widest text-stone-800 leading-loose">
 								Vi preghiamo gentilmente di <br>
-								rispondere entro il <strong>1 Settembre 2026</strong>.
+								rispondere entro il <u><strong>1 Settembre 2026</strong></u>.
 							</div>
 						</div>
 					</div>
@@ -718,6 +724,32 @@
 		</section>
 
 		<script>
+			// Cross-fade carousel
+			(function () {
+				const items = Array.from(document.querySelectorAll('#default-carousel .carousel-item'));
+				let current = 0;
+				let timer;
+
+				function goTo(n) {
+					items[current].classList.remove('active');
+					current = ((n % items.length) + items.length) % items.length;
+					items[current].classList.add('active');
+				}
+
+				function next() { goTo(current + 1); }
+				function prev() { goTo(current - 1); }
+
+				function resetTimer() {
+					clearInterval(timer);
+					timer = setInterval(next, 4000);
+				}
+
+				document.getElementById('carousel-next').addEventListener('click', function () { next(); resetTimer(); });
+				document.getElementById('carousel-prev').addEventListener('click', function () { prev(); resetTimer(); });
+
+				resetTimer();
+			})();
+
 			console.log("Script RSVP caricato (2026.05.09)");
 
 			let participants = [{ nome: '', partecipazione: 'Sì, con piacere', note: '' }];
@@ -867,11 +899,11 @@
 					'METHOD:PUBLISH',
 					'BEGIN:VEVENT',
 					'UID:wedding-simone-carlotta-20261017@symonebysy.github.io',
-					'DTSTAMP:' + new Date().toISOString().replace(/[-:.]/g, '').slice(0, 6) + 'Z',
+					'DTSTAMP:' + new Date().toISOString().replace(/[-:.]/g, '').slice(0, 15) + 'Z',
 					'DTSTART:20261017T133000Z',
 					'DTEND:20261018T000000Z',
 					'SUMMARY:💍 Matrimonio Simone & Carlotta',
-					'DESCRIPTION:Cerimonia alle 16:00 - Aperitivo alle 17:30 - Cena alle 19:30',
+					'DESCRIPTION:Cerimonia alle 16:00 - Aperitivo alle 17:30 - Cena alle 20:00',
 					'LOCATION:Villa La Personala\\, V. Dosso 50\\, 41037 San Giacomo Roncole (MO)',
 					'URL:https://maps.app.goo.gl/AsEfuxdjTEacEd7R8',
 					'BEGIN:VALARM',
