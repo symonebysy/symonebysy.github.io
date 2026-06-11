@@ -149,6 +149,10 @@
 			display: none;
 		}
 
+		@media (min-width: 768px) {
+			#scroll-footer { display: none !important; }
+		}
+
 		/* Cross-fade carousel */
 		#default-carousel .carousel-item {
 			position: absolute;
@@ -162,8 +166,8 @@
 			pointer-events: auto;
 		}
 	</style>
-  <script type="module" crossorigin src="/assets/evento-Dpdl9-1s.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/evento-BRkpkMqM.css">
+  <script type="module" crossorigin src="/assets/evento-1J51jU3c.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/evento-D2HZSnMF.css">
 </head>
 
 <body class="bg-[#f9f8f4] font-jp text-stone-800">
@@ -1014,6 +1018,68 @@
 		</script>
 
 	</main>
+
+	<!-- Sticky scroll progress footer -->
+	<footer id="scroll-footer" class="fixed bottom-5 left-0 right-0 z-50 flex justify-center pointer-events-none">
+		<div class="flex items-center gap-3 bg-white/80 backdrop-blur-md px-5 py-2.5 shadow-sm border border-stone-100/80 rounded-full pointer-events-auto">
+			<div id="scroll-dots" class="flex items-center gap-2.5"></div>
+			<span class="w-px h-3 bg-stone-200"></span>
+			<span id="scroll-label" class="text-[9px] uppercase tracking-[0.2em] text-stone-500 font-mincho w-24 truncate"></span>
+		</div>
+	</footer>
+
+	<script>
+		(function () {
+			const sections = ['hero', 'story', 'event', 'infos', 'rsvp', 'gift'];
+			const labels = ['Inizio', 'La Nostra Storia', "L'Evento", 'Info', 'RSVP', 'Lista Nozze'];
+			const mainEl = document.querySelector('main');
+			const dotsContainer = document.getElementById('scroll-dots');
+			const labelEl = document.getElementById('scroll-label');
+
+			const dots = sections.map((id, i) => {
+				const btn = document.createElement('button');
+				btn.style.cssText = 'width:8px;height:8px;border-radius:50%;transition:all 0.3s;background:#d6d3d1;border:none;padding:0;cursor:pointer;flex-shrink:0;';
+				btn.title = labels[i];
+				btn.addEventListener('click', () => {
+					const target = document.getElementById(id);
+					if (target) mainEl.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+				});
+				dotsContainer.appendChild(btn);
+				return btn;
+			});
+
+			function setActive(index) {
+				dots.forEach((dot, i) => {
+					if (i === index) {
+						dot.style.backgroundColor = '#bc002d';
+						dot.style.transform = 'scale(1.4)';
+					} else {
+						dot.style.backgroundColor = '#d6d3d1';
+						dot.style.transform = 'scale(1)';
+					}
+				});
+				if (labelEl) labelEl.textContent = labels[index];
+			}
+
+			setActive(0);
+
+			mainEl.addEventListener('scroll', () => {
+				let best = 0;
+				let bestDist = Infinity;
+				sections.forEach((id, i) => {
+					const el = document.getElementById(id);
+					if (!el) return;
+					const dist = Math.abs(el.offsetTop - mainEl.scrollTop);
+					if (dist < bestDist) {
+						bestDist = dist;
+						best = i;
+					}
+				});
+				setActive(best);
+			}, { passive: true });
+		})();
+	</script>
+
 </body>
 
 </html>
